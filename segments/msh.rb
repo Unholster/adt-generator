@@ -3,7 +3,7 @@ require 'securerandom'
 
 class MshSegment
     def initialize
-        @base_msh = "MSH|^~\\&|App|Fac|BedReady|IWT||||||D|2.3"
+        @base_msh = "MSH|^~\\&|App|Fac|BedReady|IWT|||||D|2.3"
         @base_evn = "EVN||"
     end
 
@@ -12,9 +12,9 @@ class MshSegment
         evn = HL7::Message::Segment::Default.new( @base_evn )
         timestamp = Time.new.strftime("%Y%m%d%H%M%S")
 
-        msh.e7 = timestamp
-        msh.e9 = "ADT^" + type
-        msh.e10 = SecureRandom.hex
+        msh.e6 = timestamp
+        msh.e8 = "ADT^" + type
+        msh.e9 = SecureRandom.hex
 
         evn.e1 = type
         evn.e2 = timestamp

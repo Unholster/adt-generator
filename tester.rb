@@ -10,6 +10,8 @@ class Tester
         @max_cases = gets.chomp()
         if @max_cases == ''
             @max_cases = 10
+        else
+            @max_cases = @max_cases.to_i
         end
 
         print 'Output File[C:\test\adt_sample.txt]: '
