@@ -1,6 +1,7 @@
 require './segments/msh'
 require './segments/pid'
 require './segments/pv1'
+require './segments/mrg'
 require './test'
 
 class Patient
@@ -11,22 +12,36 @@ class Patient
         @pid = PidSegment.new
         @pv1 = Pv1Segment.new
 
-        mrn = Random.new.rand(542000..542999)
-        acct = Random.new.rand(1240000..1249999)
         sex = rand(0..1) == 0 ? "m" : "f"
         first_name = @test.get_random_first_name(sex)
         last_name = @test.get_random_last_name
         dob = @test.time_rand
         dob_formatted = dob.strftime("%Y%m%d")
 
-        @pid.set_mrn(mrn)
-        @pid.set_acct(acct)
+        @pid.set_mrn(generate_mrn)
+        @pid.set_acct(generate_acct)
         @pid.set_sex(sex)
         @pid.set_name(last_name, first_name)
         @pid.set_dob(dob_formatted)
     end
 
-    def get_message(msg_type)
+    def generate_mrn
+        Random.new.rand(542000..542999)
+    end
+
+    def generate_acct
+        Random.new.rand(1240000..1249999)
+    end
+
+    def get_mrn
+        @pid.get_mrn
+    end
+
+    def get_acct
+        @pid.get_acct
+    end
+
+    def get_message(msg_type='')
         case msg_type.downcase
         when "a01"
             set_a01
@@ -44,6 +59,10 @@ class Patient
 
         header = @msh.create_msh_evn msg_type
         message = header + @pid.to_s + @pv1.to_s
+        if @mrg
+            message += @mrg.to_s
+        end
+
         return message
     end
 
@@ -87,5 +106,13 @@ class Patient
     def set_a02
         loc = @test.get_random_location
         @pv1.set_location(loc)
+    end
+
+    def add_mrg(mrn, acct)
+        @mrg = MrgSegment.new
+        puts mrn
+        puts acct
+        @mrg.set_old_mrn mrn
+        @mrg.set_old_account acct
     end
 end

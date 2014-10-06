@@ -6,6 +6,10 @@ class PidSegment
         @pid = HL7::Message::Segment::Default.new(base_pid)
     end
 
+    def get_mrn
+        @pid.e3[0..@pid.e3.index('^')]
+    end
+
     def set_mrn(mrn)
         @pid.e3 = mrn.to_s + "^^^^CMRN"
     end
@@ -20,6 +24,10 @@ class PidSegment
 
     def set_sex(sex)
         @pid.e8 = sex
+    end
+
+    def get_acct
+        @pid.e18
     end
 
     def set_acct(acct)

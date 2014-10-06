@@ -9,10 +9,6 @@ class Test
         initialize_names
     end
 
-    def get_random_case
-        return @test_cases.sample
-    end
-
     def get_random_location
         return @locations.sample
     end
@@ -31,28 +27,6 @@ class Test
 
     def time_rand from = 0.0, to = Time.now
         Time.at(from + rand * (to.to_f - from.to_f))
-    end
-
-    def initialize_test_cases
-        @test_cases = Array.new(3)
-
-        # Basic admit, update patient info, and discharge.
-        @test_cases[0] = Array.new(3)
-        @test_cases[0][0] = 'A01'
-        @test_cases[0][1] = 'A08'
-        @test_cases[0][2] = 'A03'
-
-        # Pre-admit, admit, discharge
-        @test_cases[1] = Array.new(3)
-        @test_cases[1][0] = 'A05'
-        @test_cases[1][1] = 'A06'
-        @test_cases[1][2] = 'A03'
-        
-        # Transfer a patient
-        @test_cases[2] = Array.new(3)
-        @test_cases[2][0] = 'A01'
-        @test_cases[2][1] = 'A02'
-        @test_cases[2][2] = 'A03'
     end
 
     def initialize_locations
