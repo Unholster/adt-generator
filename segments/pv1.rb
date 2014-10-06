@@ -2,7 +2,7 @@ require 'ruby-hl7'
 
 class Pv1Segment
     def initialize
-        base_pv1 = "PV1||I||Tr||||||Med/Surg-Black||||Inf||||Inpatient||Blue Cross|||||||||||||||||||MA|||||201302201456"
+        base_pv1 = "PV1||I||Tr||||||Svc||||Inf||||Inpatient||Insurance|||||||||||||||||||MA|||||201302201456"
         @pv1 = HL7::Message::Segment::Default.new(base_pv1)
     end
 
