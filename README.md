@@ -4,12 +4,9 @@
 To generate random, fake HL7 messages for application testing purposes.
 
 ### Usage
-Install gems:
-    gem install ruby-progressbar
-    gem install command_line_reporter
-    gem install ruby-hl7
-Then run ruby `main.rb`
 
-### TODO
-- Add gemfile
-- Add more test scenarios
+Build and start the container
+`docker-compose up -d --build`
+
+Execute 
+`docker-compose exec adt-generator ruby main.rb`
