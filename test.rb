@@ -1,14 +1,6 @@
 require './location'
 
 class Test
-    def initialize(include_merges = false)
-        @include_merges = include_merges
-
-        initialize_test_cases
-        initialize_locations
-        initialize_names
-    end
-
     def get_random_location
         return @locations.sample
     end
@@ -20,7 +12,7 @@ class Test
             return @women_first_names.sample
         end
     end
-    
+
     def get_random_last_name
         return @last_names.sample
     end
@@ -97,4 +89,12 @@ class Test
         @men_first_names.push("Sean")
         @men_first_names.push("Tim")
     end
+
+    def initialize(include_merges = false)
+        @include_merges = include_merges
+
+        initialize_locations
+        initialize_names
+    end
+
 end

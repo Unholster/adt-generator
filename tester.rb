@@ -14,10 +14,10 @@ class Tester
             @max_cases = @max_cases.to_i
         end
 
-        print 'Output File[C:\test\adt_sample.txt]: '
+        print 'Output File[adt_sample.txt]: '
         @file_name = gets.chomp()
         if @file_name == ''
-            @file_name = 'C:\test\adt_sample.txt'
+            @file_name = 'adt_sample.txt'
         end
 
     end
